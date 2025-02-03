@@ -1,4 +1,4 @@
-Admin Panel for Campus Connect / Vaze Connect
+#Admin Panel for Campus Connect / Vaze Connect
 This is the Admin Panel for managing the Campus Connect / Vaze Connect application. Built with React, Node.js, Express, and MongoDB, it provides administrators with the tools needed to oversee users, content, and system functionalities efficiently.
 
 Features

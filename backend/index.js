@@ -20,6 +20,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/poll", pollRoutes);
 
 //serve upload folder
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));

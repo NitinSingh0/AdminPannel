@@ -8,6 +8,17 @@ export const API_PATHS = {
     GET_USER_INFO: "/api/v1/auth/getUser",
     UPDATE_PROFILE: "/api/v1/auth/update",
   },
+  POLLS: {
+    CREATE: "/api/v1/polls/create",
+    GET_ALL: "/api/v1/polls/getAllPolls",
+    GET_BY_ID: (pollId) => `/api/v1/polls/${pollId}`,
+    VOTE: (pollId) => `/api/v1/${pollId}/vote`,
+    CLOSE: (pollId) => `/api/v1/polls/${pollId}/close`,
+    BOOKMARK: (pollId) => `/api/v1/polls/${pollId}/bookmark`,
+    GET_BOOKMARKED: "/api/v1/polls/votedPolls",
+    DELETE : (pollId) => `/api/v1/polls/${pollId}/delete`,
+      
+  },
   IMAGE: {
     UPLOAD_IMAGE: "/api/v1/auth/upload-image",
   },

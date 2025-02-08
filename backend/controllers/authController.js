@@ -10,10 +10,10 @@ const generateToken = (id) => {
 
 //Register User
 exports.registerUser = async (req, res) => {
-  const { fullName, username, email, password, profileImageUrl } = req.body;
+  const { name, username, email, password, profileImageUrl } = req.body;
 
   //validation:check for missing field
-  if (!fullName || !username || !email || !password) {
+  if (!name || !username || !email || !password) {
     return res.status(400).json({ message: "All fields are required" });
   }
   //Validation: Check username format
@@ -40,7 +40,7 @@ exports.registerUser = async (req, res) => {
 
     //create the user
     const user = await User.create({
-      fullName,
+      name,
       username,
       email,
       password,

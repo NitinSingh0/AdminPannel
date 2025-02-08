@@ -5,7 +5,7 @@ import { UserContext } from "../../context/UserContext";
 import { POLL_TYPE } from "../../utils/data";
 import OptionInput from "../../components/input/OptionInput";
 import OptionImageSelector from "../../components/input/OptionImageSelector";
-import { uploadImage } from "../../utils/uploadImage";
+import uploadImage from "../../utils/uploadImage";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import toast from "react-hot-toast";
@@ -34,7 +34,7 @@ const CreatePoll = () => {
       type: "",
       options: [],
       imageOptions: [],
-      error: ""
+      error: "",
     });
   };
 
@@ -61,6 +61,8 @@ const CreatePoll = () => {
       case "image-based":
         options = await updateImageAndGetLink(pollData.imageOptions);
         return options;
+      default:
+        return [];
     }
   };
   //create a new poll
@@ -94,7 +96,15 @@ const CreatePoll = () => {
         toast.success("Poll created Successfully!");
         clearData();
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error("API Error:", error);
+      if (error.response && error.response.data.message) {
+        toast.error(error.response.data.message);
+        handleValueChange("error", error.response.data.message);
+      } else {
+        handleValueChange("error", "Something went wrong. Please try aagain.");
+      }
+    }
   };
   return (
     <DashboardLayout activeMenu="Create Poll">

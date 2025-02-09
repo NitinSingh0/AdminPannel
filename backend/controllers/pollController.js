@@ -66,18 +66,19 @@ exports.getAllPolls = async (req, res) => {
 
   if (type) filter.type = type;
   if (creatorId) filter.creator = creatorId;
+  console.log("Data : ", { page, limit, filter });
 
   try {
     //Calculate pagination parameters
     const pageNumber = parseInt(page, 10);
     const pageSize = parseInt(limit, 10);
-    const skip = (pageNumer - 1) * pageSize;
+    const skip = (pageNumber - 1) * pageSize;
 
     //Fetch polls with pagination
     const polls = await Poll.find(filter)
       .populate("creator", "name username email profileImageUrl")
       .populate({
-        path: "response.voterId",
+        path: "responses.voterId",
         select: "username profileImageUrl name",
       })
       .skip(skip)
@@ -137,6 +138,7 @@ exports.getAllPolls = async (req, res) => {
       stats: statsWithDefaults,
     });
   } catch (err) {
+    console.error("Error is : ", err);
     res
       .status(500)
       .json({ message: "Error registering user", error: err.message });

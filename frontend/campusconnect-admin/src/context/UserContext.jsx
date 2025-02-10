@@ -19,6 +19,12 @@ const UserProvider = ({ children }) => {
     }));
   };
 
+  //update totalPolllsVotes count locally
+  const onUserVoted = () => {
+    const totalPollsVotes = user.totalPollsVotes || 0;
+    updateUserStats("totalPollsVotes", totalPollsVotes + 1);
+  };
+
   //update totalPollsCreated count locally
 
   const onPollCreatedOrDelete = (type = "create") => {
@@ -29,6 +35,26 @@ const UserProvider = ({ children }) => {
     );
   };
 
+  // Add or remove pol id from bookmarkedPolls
+  const toggleBookmarkId = (id) => {
+    const bookmarks = user.bookmarkedPolls || [];
+    const index = bookmarks.indexOf(id);
+    if (index === -1) {
+      //Add the ID if it's not in the array
+      setUser((prev) => ({
+        ...prev,
+        bookmarkedPolls: [...bookmarks, id],
+        totalPollBookmarked: prev.totalPollsBookmarked + 1,
+      }));
+    } else {
+      //Remove the ID if it's already in the array
+      setUser((prev) => ({
+        ...prev,
+        bookmarkedPolls: bookmarks.filter((item) => item !== id),
+        totalPollsBookmarked: prev.totalPollBookmarked - 1,
+      }));
+    }
+  };
   return (
     <UserContext.Provider
       value={{
@@ -36,6 +62,8 @@ const UserProvider = ({ children }) => {
         updateUser,
         clearUser,
         onPollCreatedOrDelete,
+        onUserVoted,
+        toggleBookmarkId,
       }}
     >
       {children}

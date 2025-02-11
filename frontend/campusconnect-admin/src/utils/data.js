@@ -1,5 +1,15 @@
-import {  LuBadgeCheck, LuBookmark, LuLayoutDashboard, LuLogOut, LuPenTool, LuVote } from "react-icons/lu";
-
+import {
+  LuBadgeCheck,
+  LuBookmark,
+  LuLayoutDashboard,
+  LuLogOut,
+  LuPenTool,
+  LuVote,
+  LuUserPlus,
+  LuSettings2,
+} from "react-icons/lu";
+import { MdOutlineReportProblem } from "react-icons/md";
+import { CiCircleMore } from "react-icons/ci";
 export const SIDE_MENU_DATA = [
   {
     id: "01",
@@ -14,25 +24,31 @@ export const SIDE_MENU_DATA = [
     path: "/create-poll",
   },
   {
-    id: "03",
-    label: "My Poll",
-    icon: LuPenTool,
-    path: "/my-polls",
+    id: "04",
+    label: "Add User",
+    icon: LuUserPlus,
+    path: "/add-user",
   },
   {
     id: "04",
-    label: "Voted Poll",
-    icon: LuBadgeCheck,
-    path: "/voted-polls",
+    label: "User Control",
+    icon: LuSettings2,
+    path: "/my-polls",
   },
   {
     id: "05",
-    label: "Bookmarks",
-    icon: LuBookmark,
-    path: "/bookmarked-polls",
+    label: "Report",
+    icon: MdOutlineReportProblem,
+    path: "/voted-polls",
   },
   {
     id: "06",
+    label: "More",
+    icon: CiCircleMore,
+    path: "/bookmarked-polls",
+  },
+  {
+    id: "07",
     label: "Logout",
     icon: LuLogOut,
     path: "logout",
@@ -44,5 +60,5 @@ export const POLL_TYPE = [
   { id: "02", label: "Single Choice", value: "single-choice" },
   { id: "03", label: "Rating", value: "rating" },
   { id: "04", label: "Image Based", value: "image-based" },
-  {id:"05",label:"Open Ended",value:"open-ended"},
-]
+  { id: "05", label: "Open Ended", value: "open-ended" },
+];

@@ -10,6 +10,7 @@ import VotedPolls from './pages/Dashboard/VotedPolls';
 import Bookmarks from './pages/Dashboard/Bookmarks';
 import UserProvider from './context/UserContext';
 import { Toaster } from "react-hot-toast";
+import AddUser from "./pages/Dashboard/AddUser";
 
 const App = () => {
   return (
@@ -24,21 +25,22 @@ const App = () => {
             <Route path="/create-poll" exact element={<CreatePoll />} />
             <Route path="/my-poll" exact element={<MyPolls />} />
             <Route path="/voted-polls" exact element={<VotedPolls />} />
+            <Route path="/add-user" exact element={<AddUser />} />
             <Route path="/bookmarked-polls" exact element={<Bookmarks />} />
           </Routes>
         </Router>
-        <Toaster 
+        <Toaster
           toastOptions={{
             className: "",
             style: {
-             fontSize:'13px'
-           },
+              fontSize: "13px",
+            },
           }}
         />
       </UserProvider>
     </div>
   );
-}
+};
 
 export default App
 

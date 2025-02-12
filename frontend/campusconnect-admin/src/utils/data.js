@@ -39,13 +39,13 @@ export const SIDE_MENU_DATA = [
     id: "05",
     label: "Report",
     icon: MdOutlineReportProblem,
-    path: "/voted-polls",
+    path: "/report",
   },
   {
     id: "06",
     label: "More",
     icon: CiCircleMore,
-    path: "/bookmarked-polls",
+    path: "/more",
   },
   {
     id: "07",

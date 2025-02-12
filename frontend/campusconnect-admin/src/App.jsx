@@ -12,6 +12,8 @@ import UserProvider from './context/UserContext';
 import { Toaster } from "react-hot-toast";
 import AddUser from "./pages/Dashboard/AddUser";
 import UserControl from "./pages/Dashboard/UserControl";
+import Report from "./pages/Dashboard/Report";
+import More from "./pages/Dashboard/More";
 
 const App = () => {
   return (
@@ -28,6 +30,8 @@ const App = () => {
             <Route path="/voted-polls" exact element={<VotedPolls />} />
             <Route path="/add-user" exact element={<AddUser />} />
             <Route path="/user-control" exact element={<UserControl />} />
+            <Route path="/report" exact element={<Report />} />
+            <Route path="/more" exact element={<More />} />
 
             <Route path="/bookmarked-polls" exact element={<Bookmarks />} />
           </Routes>

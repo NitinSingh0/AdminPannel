@@ -28,4 +28,11 @@ export const API_PATHS = {
   IMAGE: {
     UPLOAD_IMAGE: "/api/v1/auth/upload-image",
   },
+  REPORTS: {
+    CREATE: "/api/v1/reports/create",
+    GET_ALL: "/api/v1/reports",
+    GET_BY_ID: (reportId) => `/api/v1/reports/${reportId}`,
+    DELETE_POST: (postId) => `/api/v1/posts/${postId}/delete`,
+    MARK_AS_CHECKED: (reportId) => `/api/v1/reports/${reportId}/mark-checked`,
+  },
 };

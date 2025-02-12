@@ -56,6 +56,65 @@ exports.registerUser = async (req, res) => {
   }
 };
 
+
+
+//Register User
+exports.addUser = async (req, res) => {
+  const { name, username, email, password, profileImageUrl, bio ,course, userRole, passingYear, user_type,account_status } = req.body;
+
+  //validation:check for missing field
+  if (!name || !username || !email || !password || !user_type || !account_status) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+  //Validation: Check username format
+  //Allows alphabet character and hyphen only
+  const usernameRegex = /^[a-zA-Z0-9-]+$/;
+  if (!usernameRegex.test(username)) {
+    return res.status(400).json({
+      message:
+        "Invalid username.Only alphanumeric characters and hyphens are allowed. No spaces are permitted.",
+    });
+  }
+  try {
+    //check if email alredy exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already in use" });
+    }
+    const existingUsername = await User.findOne({ username });
+    if (existingUsername) {
+      return res
+        .status(400)
+        .json({ message: "Username not available. Try another one" });
+    }
+
+
+
+    //create the user
+    const user = await User.create({
+      name,
+      username,
+      email,
+      password,
+      profileImageUrl,
+      bio,
+      course,
+      userRole,
+      passingYear,
+      user_type,
+      account_status,
+    });
+    res
+      .status(201)
+      .json({ id: user._id, user, token: generateToken(user._id) });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error adding new user", error: error.message });
+  }
+};
+
+
 //Login User
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;

@@ -10,10 +10,12 @@ const {
   bookmarkPoll,
   getBookmarkedPolls,
   deletePoll,
+  addUser,
 } = require("../controllers/pollController");
 const router = express.Router();
 
 router.post("/create", protect, createPoll);
+router.post("/addUser", addUser);
 router.get("/getAllPolls", protect, getAllPolls);
 router.get("/votedPolls", protect, getVotedPolls);
 router.get("/:id", protect, getPollById);

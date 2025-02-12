@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import DashboardLayout from "../../components/layout/DashboardLayout";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
 
 const AddUser = () => {
   const [formData, setFormData] = useState({
@@ -25,10 +27,7 @@ const AddUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/register",
-        formData
-      );
+      const res = await axiosInstance.post(API_PATHS.POLLS.ADD_USER, formData);
       toast.success(res.data.message);
     } catch (error) {
       toast.error(error.response?.data?.message || "Registration failed");

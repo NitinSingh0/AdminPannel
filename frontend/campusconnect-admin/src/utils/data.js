@@ -33,7 +33,7 @@ export const SIDE_MENU_DATA = [
     id: "04",
     label: "User Control",
     icon: LuSettings2,
-    path: "/my-polls",
+    path: "/user-control",
   },
   {
     id: "05",

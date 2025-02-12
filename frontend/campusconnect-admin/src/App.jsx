@@ -11,6 +11,7 @@ import Bookmarks from './pages/Dashboard/Bookmarks';
 import UserProvider from './context/UserContext';
 import { Toaster } from "react-hot-toast";
 import AddUser from "./pages/Dashboard/AddUser";
+import UserControl from "./pages/Dashboard/UserControl";
 
 const App = () => {
   return (
@@ -26,6 +27,8 @@ const App = () => {
             <Route path="/my-poll" exact element={<MyPolls />} />
             <Route path="/voted-polls" exact element={<VotedPolls />} />
             <Route path="/add-user" exact element={<AddUser />} />
+            <Route path="/user-control" exact element={<UserControl />} />
+
             <Route path="/bookmarked-polls" exact element={<Bookmarks />} />
           </Routes>
         </Router>

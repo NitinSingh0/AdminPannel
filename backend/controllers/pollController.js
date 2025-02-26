@@ -237,9 +237,11 @@ exports.addUser = async (req, res) => {
     });
     res
       .status(201)
-      .json({ id: user._id, user, token: generateToken(user._id) });
+      .json({ id: user._id, user, message: "User added successfully" });
+
   } catch (error) {
-    console.log(error.message);
+    console.error("Error adding user:", error);
+
     res
       .status(500)
       .json({ message: "Error adding new user", error: error.message });

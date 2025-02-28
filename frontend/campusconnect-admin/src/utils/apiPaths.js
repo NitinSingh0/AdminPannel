@@ -1,4 +1,4 @@
-export const BASE_URL = "https://admin-pannel-nine-pi.vercel.app";
+export const BASE_URL = "https://adminpannel-s5so.onrender.com";
 
 //utils/apipaths.js
 export const API_PATHS = {

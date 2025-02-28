@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:8000'
+export const BASE_URL = "https://admin-pannel-nine-pi.vercel.app";
 
 //utils/apipaths.js
 export const API_PATHS = {
@@ -32,7 +32,7 @@ export const API_PATHS = {
     CREATE: "/api/v1/reports/create",
     GET_ALL: "/api/v1/reports",
     GET_BY_ID: (reportId) => `/api/v1/reports/${reportId}`,
-    DELETE_POST: (postId) => `/api/v1/posts/${postId}/delete`,
+    DELETE_POST: (postId) => `/api/v1/reports/delete-post/${postId}/delete`,
     MARK_AS_CHECKED: (reportId) => `/api/v1/reports/${reportId}/mark-checked`,
   },
 };

@@ -125,6 +125,18 @@ exports.loginUser = async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
+     if (user.user_type !== "admin") {
+       return res
+         .status(403)
+         .json({ message: "Access denied. Only admins can log in." });
+     }
+
+     if (user.account_status !== "active") {
+       return res
+         .status(403)
+         .json({ message: "Account is not active. Please contact support." });
+     }
+    
     if (!user || !(await user.comparePassword(password))) {
       return res.status(400).json({ message: "Invalid credentials" });
     }

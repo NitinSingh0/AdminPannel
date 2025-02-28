@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema(
     },
     user_type: {
       type: String,
-      enum: ["faculty", "student"],
+      enum: ["faculty", "student", "admin"],
       default: "student",
     },
     account_status: {

@@ -114,7 +114,7 @@ const AddUser = () => {
           <input
             type="text"
             name="passingYear"
-            placeholder="Passing Year"
+            placeholder="Passing Year / Year of joining"
             value={formData.passingYear}
             onChange={handleChange}
             className="p-2 border rounded"
@@ -127,6 +127,7 @@ const AddUser = () => {
           >
             <option value="student">Student</option>
             <option value="faculty">Faculty</option>
+            <option value="admin">Admin</option>
           </select>
           <select
             name="account_status"

@@ -59,22 +59,35 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Delete Post from Report
-router.delete("/post/:postId", async (req, res) => {
+
+
+// DELETE Post and its related Reports
+router.delete("/delete-post/:postId/delete", async (req, res) => {
   try {
-    const post = await Post.findByIdAndDelete(req.params.postId);
-    if (!post) {
+    const { postId } = req.params;
+
+    // Delete the post
+    const deletedPost = await Post.findByIdAndDelete(postId);
+    if (!deletedPost) {
       return res
         .status(404)
         .json({ success: false, message: "Post not found" });
     }
-    await Report.deleteMany({ postId: req.params.postId }); // Remove related reports
-    res.json({ success: true, message: "Post deleted successfully" });
+
+    // Delete all reports related to this post
+    await Report.deleteMany({ postId });
+
+    res.json({
+      success: true,
+      message: "Post and related reports deleted successfully",
+    });
   } catch (error) {
     console.error("Error deleting post:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
+
+
 
 // Mark Report as Checked
 router.put("/:id/mark-checked", async (req, res) => {

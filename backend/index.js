@@ -10,9 +10,19 @@ const reportRoutes = require("./routes/reportRoutes");
 const connectDB = require("./config/db");
 const app = express();
 
-//middleware to handle CORS
-//app.use(cors());
-app.options('*', cors()); // Allow preflight requests globally
+// Allow requests from your frontend
+const corsOptions = {
+  origin: 'https://admin-pannel-8gnc.vercel.app', // Allow only your frontend
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow cookies/auth headers
+};
+
+app.use(cors(corsOptions));
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('CORS fixed!');
+});
 
 app.use(express.json());
 connectDB();

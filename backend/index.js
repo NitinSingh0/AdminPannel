@@ -13,7 +13,7 @@ const app = express();
 //middleware to handle CORS
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: process.env.CLIENT_URL || "*",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })

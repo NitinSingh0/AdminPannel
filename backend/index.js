@@ -11,7 +11,8 @@ const connectDB = require("./config/db");
 const app = express();
 
 //middleware to handle CORS
-app.use(cors());
+//app.use(cors());
+app.options('*', cors()); // Allow preflight requests globally
 
 app.use(express.json());
 connectDB();

@@ -1,6 +1,6 @@
 const express = require("express");
 const Report = require("../models/report");
-const Post = require("../models/Post");
+const Post = require("../models/post");
 const User = require("../models/User"); // Ensure you have a User model
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+// import { render } from "@testing-library/react";
 import React from "react";
 import { HiMiniPlus, HiOutlineTrash } from "react-icons/hi2";
 
@@ -17,9 +17,9 @@ const OptionImageSelector = ({ imageList, setImageList }) => {
     }
   };
   //function to deleting an image
-    const handleDeleteImage = (index) => {
-        const updateList = imageList.filter((_, idx) => idx !== index);
-        setImageList(updateList);
+  const handleDeleteImage = (index) => {
+    const updateList = imageList.filter((_, idx) => idx !== index);
+    setImageList(updateList);
   };
   return (
     <div>
@@ -51,7 +51,10 @@ const OptionImageSelector = ({ imageList, setImageList }) => {
             className="hidden"
             id="imageInput"
           />
-          <label htmlFor="imageInput" className="btn-small text-nowrap py-1 cursor-pointer">
+          <label
+            htmlFor="imageInput"
+            className="btn-small text-nowrap py-1 cursor-pointer"
+          >
             <HiMiniPlus className="text-lg" /> Select Image
           </label>
         </div>

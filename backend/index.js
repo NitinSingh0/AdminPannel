@@ -11,7 +11,17 @@ const connectDB = require("./config/db");
 const app = express();
 
 //middleware to handle CORS
-app.use(cors());
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://admin-pannel-8gnc.vercel.app"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 
 app.use(express.json());
 connectDB();

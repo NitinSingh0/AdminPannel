@@ -98,7 +98,7 @@ const AnalyticsDashboard = () => {
   return (
     <DashboardLayout activeMenu="Analytics">
       <div>
-        <h2>User Analytics</h2>
+        <h2> User Analytics </h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={userData}>
             <XAxis dataKey="_id" />

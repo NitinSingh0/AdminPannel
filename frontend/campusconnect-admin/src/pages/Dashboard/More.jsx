@@ -88,7 +88,7 @@ const More = () => {
           {/* Active Users */}
           <div className="bg-white p-5 shadow-lg rounded-lg">
             <h3 className="text-lg font-semibold text-gray-700">
-              Active Users
+              Number of Active Users
             </h3>
             <p className="text-xl font-bold mt-2 text-blue-500">
               {activeUsers}

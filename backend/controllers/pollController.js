@@ -1,5 +1,15 @@
 const User = require("../models/User");
 const Poll = require("../models/Poll");
+const nodemailer = require("nodemailer");
+
+// Nodemailer setup
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "022nitinsingh@gmail.com", // Your Gmail
+    pass: "mopk whyk idbw ksya", // Use an App Password for security
+  },
+});
 
 //create New Poll
 exports.createPoll = async (req, res) => {
@@ -191,10 +201,29 @@ exports.getVotedPolls = async (req, res) => {
 };
 //add user
 exports.addUser = async (req, res) => {
-  const { name, username, email, password, profileImageUrl, bio ,course, userRole, passingYear, user_type,account_status } = req.body;
+  const {
+    name,
+    username,
+    email,
+    password,
+    profileImageUrl,
+    bio,
+    course,
+    userRole,
+    passingYear,
+    user_type,
+    account_status,
+  } = req.body;
 
   //validation:check for missing field
-  if (!name || !username || !email || !password || !user_type || !account_status) {
+  if (
+    !name ||
+    !username ||
+    !email ||
+    !password ||
+    !user_type ||
+    !account_status
+  ) {
     return res.status(400).json({ message: "All fields are required" });
   }
   //Validation: Check username format
@@ -219,8 +248,6 @@ exports.addUser = async (req, res) => {
         .json({ message: "Username not available. Try another one" });
     }
 
-
-
     //create the user
     const user = await User.create({
       name,
@@ -235,10 +262,50 @@ exports.addUser = async (req, res) => {
       user_type,
       account_status,
     });
-    res
-      .status(201)
-      .json({ id: user._id, user, message: "User added successfully" });
+    // Send Email to the New User
+    const mailOptions = {
+      from: `"Vaze Connect" <022nitinsingh@gmail.com>`,
+      to: email,
+      subject: "Welcome to Vaze Connect - Your Account Details",
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+          <h2 style="color: #0056b3; text-align: center;">Welcome to Vaze Connect 🎉</h2>
+          <p>Hello <b>${name}</b>,</p>
+          <p>We're excited to have you on board as part of <b>Campus Connect</b>, the official student-faculty platform of <b>V.G. Vaze College of Arts, Science, and Commerce</b>.</p>
+          
+          <h3>Your Account Details:</h3>
+          <ul>
+            <li><b>Username:</b> ${username}</li>
+            <li><b>Email:</b> ${email}</li>
+            <li><b>Password:</b> ${password}</li>
+            <li><b>User Type:</b> ${user_type}</li>
+          </ul>
 
+          <p>To get started, visit our platform and log in with your credentials.</p>
+
+          <p>If you have any questions, feel free to reach out to our support team.</p>
+          <p>Best Regards,</p>
+          <p><b>Vaze Connect Team</b></p>
+        </div>
+      `,
+    };
+
+    // Send the email
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error("Error sending email:", err);
+        return res.status(500).json({
+          message: "User added, but email sending failed",
+          error: err.message,
+        });
+      }
+      console.log("Email sent:", info.response);
+      res.status(201).json({
+        id: user._id,
+        user,
+        message: "User added successfully. Email sent.",
+      });
+    });
   } catch (error) {
     console.error("Error adding user:", error);
 

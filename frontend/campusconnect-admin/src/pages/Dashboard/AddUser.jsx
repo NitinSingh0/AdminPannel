@@ -13,7 +13,7 @@ const AddUser = () => {
     profileImageUrl: "",
     bio: "",
     course: "",
-    userRole: "",
+    userRole: ".",
     passingYear: "",
     user_type: "student", // Default
     account_status: "active", // Default
@@ -101,14 +101,7 @@ const AddUser = () => {
             onChange={handleChange}
             className="p-2 border rounded w-full"
           />
-          <input
-            type="text"
-            name="userRole"
-            placeholder="User Role"
-            value={formData.userRole}
-            onChange={handleChange}
-            className="p-2 border rounded w-full"
-          />
+
           <select
             name="user_type"
             value={formData.user_type}

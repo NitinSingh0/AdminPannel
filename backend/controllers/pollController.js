@@ -280,8 +280,11 @@ exports.addUser = async (req, res) => {
             <li><b>Password:</b> ${password}</li>
             <li><b>User Type:</b> ${user_type}</li>
           </ul>
-
-          <p>To get started, visit our platform and log in with your credentials.</p>
+          <p>To get started, please read our <strong>User Manual</strong> for guidance:</p>
+          <p>📖 <a href="https://drive.google.com/drive/folders/18EEfJz8YkreWneu1qhnm3E1fLZyGduBY?usp=sharing" 
+                style="color: #3498db; text-decoration: none; font-weight: bold;">
+                Click here to access the User Manual 📚</a></p>
+         
 
           <p>If you have any questions, feel free to reach out to our support team.</p>
           <p>Best Regards,</p>
@@ -426,22 +429,18 @@ exports.bookmarkPoll = async (req, res) => {
         (pollId) => pollId.toString() !== id
       );
       await user.save();
-      return res
-        .status(200)
-        .json({
-          message: "Poll removed from bookmarks",
-          bookmarkedPolls: user.bookmarkedPolls,
-        });
+      return res.status(200).json({
+        message: "Poll removed from bookmarks",
+        bookmarkedPolls: user.bookmarkedPolls,
+      });
     }
     //Add poll to bookmarks
     user.bookmarkedPolls.push(id);
     await user.save();
-    res
-      .status(200)
-      .json({
-        message: "Poll bookmarked successfully",
-        bookmarkedPolls: user.bookmarkedPolls,
-      });
+    res.status(200).json({
+      message: "Poll bookmarked successfully",
+      bookmarkedPolls: user.bookmarkedPolls,
+    });
   } catch (err) {
     res
       .status(500)
@@ -490,11 +489,13 @@ exports.deletePoll = async (req, res) => {
 
   try {
     const poll = await Poll.findById(id);
-    if(!poll){
+    if (!poll) {
       return res.status(404).json({ message: "Poll not found" });
     }
     if (poll.creator.toString() !== userId) {
-      return res.status(403).json({ message: "You are not authorized to delete this poll." });
+      return res
+        .status(403)
+        .json({ message: "You are not authorized to delete this poll." });
     }
     await Poll.findByIdAndDelete(id);
     res.status(200).json({ message: "Poll deleted successfully!" });

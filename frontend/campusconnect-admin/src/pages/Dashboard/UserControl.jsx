@@ -88,9 +88,9 @@ const UserControl = () => {
                           handleStatusChange(user._id, e.target.value)
                         }
                       >
-                        <option value="active">Active</option>
+                        <option value="active">Activate</option>
                         <option value="deactivate">Deactivate</option>
-                        <option value="suspended">Suspended</option>
+                        {/* <option value="suspended">Suspended</option> */}
                       </select>
                     </td>
                   </tr>

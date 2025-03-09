@@ -1,4 +1,4 @@
-export const BASE_URL = "https://adminpannel-s5so.onrender.com";
+ export const BASE_URL = "https://adminpannel-s5so.onrender.com";
 
 //utils/apipaths.js
 export const API_PATHS = {
@@ -34,5 +34,11 @@ export const API_PATHS = {
     GET_BY_ID: (reportId) => `/api/v1/reports/${reportId}`,
     DELETE_POST: (postId) => `/api/v1/reports/delete-post/${postId}/delete`,
     MARK_AS_CHECKED: (reportId) => `/api/v1/reports/${reportId}/mark-checked`,
+  },
+  ANALYTICS: {
+    USER: "/api/v1/analytics/user-analytics",
+    POST: "/api/v1/analytics/post-analytics",
+    POLL: "/api/v1/analytics/poll-analytics",
+    REPORT: "/api/v1/analytics/report-analytics",
   },
 };

@@ -14,6 +14,7 @@ import AddUser from "./pages/Dashboard/AddUser";
 import UserControl from "./pages/Dashboard/UserControl";
 import Report from "./pages/Dashboard/Report";
 import More from "./pages/Dashboard/More";
+import AnalyticsDashboard from "./pages/Dashboard/AnalyticsDashboard";
 
 const App = () => {
   return (
@@ -31,8 +32,8 @@ const App = () => {
             <Route path="/add-user" exact element={<AddUser />} />
             <Route path="/user-control" exact element={<UserControl />} />
             <Route path="/report" exact element={<Report />} />
+            <Route path="/analytics" exact element={<AnalyticsDashboard />} />
             <Route path="/more" exact element={<More />} />
-
             <Route path="/bookmarked-polls" exact element={<Bookmarks />} />
           </Routes>
         </Router>

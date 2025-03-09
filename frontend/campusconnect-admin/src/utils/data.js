@@ -7,6 +7,7 @@ import {
   LuVote,
   LuUserPlus,
   LuSettings2,
+  LuChartBar,
 } from "react-icons/lu";
 import { MdOutlineReportProblem } from "react-icons/md";
 import { CiCircleMore } from "react-icons/ci";
@@ -43,12 +44,18 @@ export const SIDE_MENU_DATA = [
   },
   {
     id: "06",
+    label: "Analytics",
+    icon: LuChartBar,
+    path: "/analytics",
+  },
+  {
+    id: "07",
     label: "More",
     icon: CiCircleMore,
     path: "/more",
   },
   {
-    id: "07",
+    id: "08",
     label: "Logout",
     icon: LuLogOut,
     path: "logout",

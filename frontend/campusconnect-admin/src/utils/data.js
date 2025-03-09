@@ -44,18 +44,19 @@ export const SIDE_MENU_DATA = [
   },
   {
     id: "06",
-    label: "Analytics",
-    icon: LuChartBar,
-    path: "/analytics",
-  },
-  {
-    id: "07",
     label: "More",
     icon: CiCircleMore,
     path: "/more",
   },
   {
-    id: "08",
+    id: "07",
+    label: "Analytics",
+    icon: LuChartBar,
+    path:"/analytics"
+  },
+
+  {
+    id: "07",
     label: "Logout",
     icon: LuLogOut,
     path: "logout",
